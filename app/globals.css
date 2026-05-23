@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* brand greens (logo) — kept green on both themes, but soft not neon */
+  --green-primary: #1f6b4a;
+  --green-accent: #3e9d78;
+  --green-glow: rgba(62, 157, 120, 0.16);
+  --sage: #9dbbaa;
+  --sand: #e7dcc7;
+
+  --dark-bg: #0f1714;
+  --dark-surface: #16211d;
+  --dark-border: rgba(120, 170, 145, 0.16);
+  --light-bg: #f3efe7;
+  --light-surface: #fbf8f2;
+  --light-border: rgba(31, 90, 63, 0.14);
+
+  /* active theme tokens (warm ivory light defaults) */
+  --bg: var(--light-bg);
+  --surface: var(--light-surface);
+  --border: var(--light-border);
+  --text: #20302a;
+  --text-muted: #6a7a71;
+  --grain-opacity: 0.018;
+}
+
+.dark {
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --border: var(--dark-border);
+  --text: #e9eee8;
+  --text-muted: #93a89c;
+  --grain-opacity: 0.04;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--green-accent);
+  color: #fff;
+}
+
+/* animated link underline */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: var(--green-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* subtle dark-mode vignette for depth */
+.dark body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: inset 0 0 220px rgba(0, 0, 0, 0.45);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm-sans), sans-serif;
+  transition: background-color 300ms ease, color 300ms ease;
+  overflow-x: hidden;
+}
+
+/* smooth theme transition on common surfaces */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 300ms ease, border-color 300ms ease,
+    color 300ms ease, box-shadow 300ms ease;
+}
+
+/* ---------- grain texture overlay ---------- */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* page-wide fixed grain */
+.grain-fixed::after {
+  position: fixed;
+}
+
+/* ---------- hero dot-grid ---------- */
+.dot-grid {
+  background-image: radial-gradient(
+    var(--green-primary) 1px,
+    transparent 1px
+  );
+  background-size: 30px 30px;
+  opacity: 0.05;
+}
+
+.dark .dot-grid {
+  background-image: radial-gradient(var(--sage) 1px, transparent 1px);
+  opacity: 0.06;
+}
+
+/* ---------- text helpers ---------- */
+.text-stroke {
+  -webkit-text-stroke: 1.5px var(--green-primary);
+  color: transparent;
+}
+
+.dark .text-stroke {
+  -webkit-text-stroke-color: var(--green-accent);
+}
+
+@media (min-width: 768px) {
+  .text-stroke {
+    -webkit-text-stroke-width: 2px;
+  }
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* ---------- surfaces ---------- */
+.surface {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* ---------- logo glow in dark ---------- */
+.dark .logo-glow {
+  filter: drop-shadow(0 0 10px rgba(46, 196, 160, 0.45));
+}
+
+/* ---------- scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--green-primary);
+  border-radius: 6px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-accent);
+}
+
+/* ---------- marquee pause on hover ---------- */
+.marquee-track {
+  width: max-content;
+}
+.marquee-pause:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

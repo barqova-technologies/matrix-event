@@ -35,7 +35,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-container items-center justify-between px-4 sm:px-6 lg:px-10">
         {/* logo: M glyph (theme-swapped) + wordmark */}
-        <a href="#top" className="flex items-center gap-2.5" aria-label={SITE.name}>
+        <a href="/#top" className="flex items-center gap-2.5" aria-label={SITE.name}>
           <Image
             src="/logo-m-green.png"
             alt={SITE.name}

@@ -3,7 +3,7 @@ import { NAV_LINKS, SITE } from "@/lib/constants";
 
 export default function Footer() {
   const footerLinks = NAV_LINKS.filter((l) =>
-    ["About", "Services", "Clients", "Contact"].includes(l.label)
+    ["About", "Services", "Clients", "Ecosystem", "Contact"].includes(l.label)
   );
 
   return (

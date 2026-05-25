@@ -1,7 +1,31 @@
 export const SITE = {
   name: "Matrix Events & Marketing",
   parent: "A Unit of Infinity Ventures",
-  url: "www.matrixevent.in",
+  url: "www.matrixevent.in", // display string (no protocol)
+  // Canonical origin used by metadata, sitemap, robots, JSON-LD.
+  canonical: "https://www.matrixevent.in",
+  ogImage: "/og.png",
+  icon: "/logo-mark.png",
+  locale: "en_US",
+  tagline: "We Make Events Happen.",
+  // SEO title (50–60 chars) + description (110–160 chars).
+  title: "Matrix Events & Marketing | We Make Events Happen",
+  description:
+    "Lucknow-based event management and marketing company. 100+ events, trusted by India's top brands. A unit of Infinity Ventures.",
+  craftedBy: { name: "Barqova Technologies", href: "https://barqova.com" },
+  keywords: [
+    "Matrix Events",
+    "Matrix Events & Marketing",
+    "event management Lucknow",
+    "marketing agency Lucknow",
+    "expo management",
+    "brand activations",
+    "wedding production",
+    "event production Lucknow",
+    "on ground activations",
+    "Gomti Nagar events",
+    "Infinity Ventures",
+  ],
   phone: "+91 880 883 6000",
   phoneHref: "tel:+918808836000",
   email: "hello@matrixevent.in",
@@ -12,15 +36,59 @@ export const SITE = {
   bookingHref: "mailto:hello@matrixevent.in?subject=Book%20a%20Meeting",
   address:
     "3rd & 4th Floor, 1/42, Vijayant Khand, Gomti Nagar, Lucknow – 226010",
-};
+} as const;
 
+// Absolute hrefs ("/#...") so the nav works from any route (e.g. /ecosystem),
+// not just the home page.
 export const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Clients", href: "#clients" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Clients", href: "/#clients" },
+  { label: "Team", href: "/#team" },
+  { label: "Ecosystem", href: "/ecosystem" },
+  { label: "Contact", href: "/#contact" },
 ];
+
+/**
+ * Ecosystem — the family of brands Matrix Events belongs to.
+ * NOTE: sibling-brand blurbs are placeholders — adjust to real positioning.
+ */
+export const ECOSYSTEM = {
+  parent: "Infinity Ventures",
+  intro:
+    "Matrix Events & Marketing is a unit of Infinity Ventures, a small ecosystem of independent brands that share craft, standards, and people.",
+  brands: [
+    {
+      name: "Barqova",
+      domain: "barqova.com",
+      url: "https://barqova.com",
+      blurb: "The creative studio and engineering craft behind the ecosystem.",
+      current: false,
+    },
+    {
+      name: "Barq Media",
+      domain: "barqmedia.in",
+      url: "https://barqmedia.in",
+      blurb: "Content systems, cinematic reels, and brand strategy.",
+      current: false,
+    },
+    {
+      name: "Matrix Events",
+      domain: "matrixevent.in",
+      url: "https://www.matrixevent.in",
+      blurb: "Events, experiences, and on-ground production.",
+      current: true,
+    },
+    {
+      name: "Inkqova",
+      domain: "inkqova.in",
+      url: "https://inkqova.in",
+      blurb: "Writing, editorial, and brand storytelling in print.",
+      current: false,
+    },
+  ],
+  note: "Barqova Technologies is registered separately but operates within the same ecosystem.",
+} as const;
 
 export const STATS = [
   { value: 100, suffix: "+", label: "Events" },

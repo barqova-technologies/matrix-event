@@ -77,7 +77,15 @@ export default function Footer() {
 
       <div className="border-t border-[var(--dark-border)] py-5">
         <p className="text-center font-label text-xs text-white/50">
-          © 2025 Matrix Events &amp; Marketing. All rights reserved.
+          © 2025 Matrix Events &amp; Marketing. All rights reserved · Crafted by{" "}
+          <a
+            href={SITE.craftedBy.href}
+            target="_blank"
+            rel="noreferrer"
+            className="text-green-accent/80 transition-colors hover:text-green-accent"
+          >
+            {SITE.craftedBy.name}
+          </a>
         </p>
       </div>
     </footer>
